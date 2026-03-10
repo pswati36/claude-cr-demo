@@ -19,7 +19,11 @@ const orders = [
 
 app.get('/api/v1/users', (req, res) => res.json(users));
 app.get('/api/v1/users/:id', (req, res) => {
-  const user = users.find(u => u.id === Number(req.params.id));
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id) || id <= 0) {
+    return res.status(400).json({ error: 'Invalid user ID' });
+  }
+  const user = users.find(u => u.id === id);
   user ? res.json(user) : res.status(404).json({ error: 'User not found' });
 });
 app.get('/api/v1/orders', (req, res) => res.json(orders));
