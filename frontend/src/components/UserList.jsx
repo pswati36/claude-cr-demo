@@ -15,7 +15,10 @@ export default function UserList() {
           <div className="user-avatar">{u.name.charAt(0)}</div>
           <div className="user-info">
             <span className="user-name">{u.name}</span>
-            <span className="user-email">{u.email}</span>
+            <div className="user-contact">
+              <span className="user-email">{u.email}</span>
+              {u.phone && <span className="user-phone">{u.phone}</span>}
+            </div>
           </div>
         </div>
       ))}
@@ -58,9 +61,23 @@ export default function UserList() {
           font-weight: 500;
           font-size: 0.95rem;
         }
+        .user-contact {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
         .user-email {
           font-size: 0.82rem;
           color: #6b7280;
+        }
+        .user-phone {
+          font-size: 0.82rem;
+          color: #6b7280;
+        }
+        .user-phone::before {
+          content: '·';
+          margin-right: 0.75rem;
+          color: #d1d5db;
         }
       `}</style>
     </div>
