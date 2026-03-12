@@ -6,9 +6,9 @@ app.use(cors());
 app.use(express.json());
 
 const users = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', phone: '+1 (555) 101-0001' },
-  { id: 2, name: 'Bob Smith', email: 'bob@example.com', phone: '+1 (555) 101-0002' },
-  { id: 3, name: 'Carol White', email: 'carol@example.com', phone: '+1 (555) 101-0003' },
+  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', phone: '+1 (555) 101-0001', address: '123 Maple St, Springfield, IL' },
+  { id: 2, name: 'Bob Smith', email: 'bob@example.com', phone: '+1 (555) 101-0002', address: '456 Oak Ave, Shelbyville, IL' },
+  { id: 3, name: 'Carol White', email: 'carol@example.com', phone: '+1 (555) 101-0003', address: '789 Pine Rd, Capital City, IL' },
 ];
 
 const orders = [
