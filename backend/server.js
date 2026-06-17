@@ -28,5 +28,5 @@ app.get('/api/v1/users/:id', (req, res) => {
 });
 app.get('/api/v1/orders', (req, res) => res.json(orders));
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
