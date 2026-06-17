@@ -22,6 +22,7 @@ export default function OrderDashboard() {
             <th>Order</th>
             <th>Total</th>
             <th>Status</th>
+            <th>Last Updated</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@ export default function OrderDashboard() {
                   <span className="status-badge" style={{ background: color.bg, color: color.text }}>
                     {o.status}
                   </span>
+                </td>
+                <td className="order-date">
+                  {o.lastUpdated ? new Date(o.lastUpdated).toLocaleString() : '—'}
                 </td>
               </tr>
             );
@@ -81,6 +85,10 @@ export default function OrderDashboard() {
           border-radius: 9999px;
           font-size: 0.8rem;
           font-weight: 600;
+        }
+        .order-date {
+          color: #6b7280;
+          font-size: 0.88rem;
         }
       `}</style>
     </div>
