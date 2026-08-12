@@ -17,7 +17,7 @@ cd frontend && npm start    # start dev server on http://localhost:3000
 cd frontend && npm run build  # production build
 ```
 
-Both services must run simultaneously during development. The frontend proxies `/api/*` requests to `localhost:3001` (configured in `frontend/package.json`).
+Both services must run simultaneously during development. The frontend proxies `/api/*` requests via `frontend/src/setupProxy.js`, which targets `http://localhost:${BACKEND_PORT || 3001}` — set `BACKEND_PORT` when starting the frontend against a non-default backend port.
 
 ## Architecture
 
@@ -35,3 +35,6 @@ This is a full-stack dashboard app with two independent Node.js packages — no 
 - `App.js` — composes both components into a two-panel dashboard layout
 
 Components embed their own `<style>` blocks inline rather than using external CSS files (except `App.css` for layout).
+
+## Recent Commits
+- 2026-08-12: (commit)
