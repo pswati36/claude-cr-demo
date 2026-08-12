@@ -12,9 +12,9 @@ const users = [
 ];
 
 const orders = [
-  { id: 101, total: 59.99, status: 'Shipped' },
-  { id: 102, total: 124.50, status: 'Processing' },
-  { id: 103, total: 29.00, status: 'Delivered' },
+  { id: 101, item: 'Wireless Headphones', total: 59.99, status: 'Shipped' },
+  { id: 102, item: 'Mechanical Keyboard', total: 124.50, status: 'Processing' },
+  { id: 103, item: 'USB-C Hub', total: 29.00, status: 'Delivered' },
 ];
 
 app.get('/api/v1/users', (req, res) => res.json(users));

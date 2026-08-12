@@ -20,6 +20,7 @@ export default function OrderDashboard() {
         <thead>
           <tr>
             <th>Order</th>
+            <th>Item</th>
             <th>Total</th>
             <th>Status</th>
           </tr>
@@ -30,6 +31,7 @@ export default function OrderDashboard() {
             return (
               <tr key={o.id}>
                 <td className="order-id">#{o.id}</td>
+                <td>{o.item}</td>
                 <td className="order-total">${o.total.toFixed(2)}</td>
                 <td>
                   <span className="status-badge" style={{ background: color.bg, color: color.text }}>
