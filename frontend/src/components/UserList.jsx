@@ -14,7 +14,7 @@ export default function UserList() {
         <div key={u.id} className="user-item">
           <div className="user-avatar">{u.name.charAt(0)}</div>
           <div className="user-info">
-            <span className="user-name">{u.name}</span>
+            <span className="user-name">{u.name}{u.designation && <span className="user-designation"> ({u.designation})</span>}</span>
             <div className="user-contact">
               <span className="user-email">{u.email}</span>
               {u.phone && <span className="user-phone">{u.phone}</span>}
@@ -60,6 +60,10 @@ export default function UserList() {
         .user-name {
           font-weight: 500;
           font-size: 0.95rem;
+        }
+        .user-designation {
+          font-weight: 400;
+          color: #6b7280;
         }
         .user-contact {
           display: flex;
