@@ -10,6 +10,8 @@ cd backend && npm install   # install dependencies
 cd backend && npm start     # start server on http://localhost:3001
 ```
 
+Set `ANTHROPIC_API_KEY` in the backend's environment to enable the AI insights endpoint (`POST /api/v1/orders/insights`); without it, that endpoint returns a 500 but the rest of the app is unaffected.
+
 ### Frontend (React)
 ```bash
 cd frontend && npm install  # install dependencies
