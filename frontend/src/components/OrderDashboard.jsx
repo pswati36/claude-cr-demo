@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOrders } from '../api/client';
+import { fetchOrders, fetchOrderInsights } from '../api/client';
 
 const statusColors = {
   Shipped: { bg: '#dbeafe', text: '#1d4ed8' },
@@ -9,13 +9,39 @@ const statusColors = {
 
 export default function OrderDashboard() {
   const [orders, setOrders] = useState([]);
+  const [insights, setInsights] = useState(null);
+  const [insightsLoading, setInsightsLoading] = useState(false);
+  const [insightsError, setInsightsError] = useState(null);
 
   useEffect(() => {
     fetchOrders().then(setOrders).catch(console.error);
   }, []);
 
+  const generateInsights = () => {
+    setInsightsLoading(true);
+    setInsightsError(null);
+    fetchOrderInsights()
+      .then(({ summary }) => setInsights(summary))
+      .catch(err => setInsightsError(err.message))
+      .finally(() => setInsightsLoading(false));
+  };
+
   return (
     <div className="order-table-wrapper">
+      <div className="ai-insights">
+        <div className="ai-insights-header">
+          <span className="ai-insights-title">AI Insights</span>
+          <button
+            className="ai-insights-button"
+            onClick={generateInsights}
+            disabled={insightsLoading}
+          >
+            {insightsLoading ? 'Thinking…' : insights ? 'Regenerate' : 'Generate summary'}
+          </button>
+        </div>
+        {insightsError && <p className="ai-insights-error">{insightsError}</p>}
+        {insights && !insightsError && <p className="ai-insights-text">{insights}</p>}
+      </div>
       <table className="order-table" role="table">
         <thead>
           <tr>
@@ -91,6 +117,54 @@ export default function OrderDashboard() {
         .order-date {
           color: #6b7280;
           font-size: 0.88rem;
+        }
+        .ai-insights {
+          margin-bottom: 1rem;
+          padding: 0.85rem 1rem;
+          border-radius: 0.5rem;
+          background: #f5f3ff;
+          border: 1px solid #ddd6fe;
+        }
+        .ai-insights-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+        }
+        .ai-insights-title {
+          font-size: 0.78rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: #6d28d9;
+        }
+        .ai-insights-button {
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: #6d28d9;
+          background: #fff;
+          border: 1px solid #ddd6fe;
+          border-radius: 0.375rem;
+          padding: 0.35rem 0.75rem;
+          cursor: pointer;
+        }
+        .ai-insights-button:hover:not(:disabled) {
+          background: #ede9fe;
+        }
+        .ai-insights-button:disabled {
+          cursor: default;
+          opacity: 0.7;
+        }
+        .ai-insights-text {
+          margin: 0.6rem 0 0;
+          font-size: 0.9rem;
+          line-height: 1.5;
+          color: #3730a3;
+        }
+        .ai-insights-error {
+          margin: 0.6rem 0 0;
+          font-size: 0.9rem;
+          color: #b91c1c;
         }
       `}</style>
     </div>
