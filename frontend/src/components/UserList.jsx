@@ -19,6 +19,7 @@ export default function UserList() {
               <span className="user-email">{u.email}</span>
               {u.phone && <span className="user-phone">{u.phone}</span>}
               {u.address && <span className="user-address">{u.address}</span>}
+              {u.organization && <span className="user-organization">{u.organization}</span>}
             </div>
           </div>
         </div>
@@ -89,6 +90,15 @@ export default function UserList() {
           color: #6b7280;
         }
         .user-address::before {
+          content: '·';
+          margin-right: 0.75rem;
+          color: #d1d5db;
+        }
+        .user-organization {
+          font-size: 0.82rem;
+          color: #6b7280;
+        }
+        .user-organization::before {
           content: '·';
           margin-right: 0.75rem;
           color: #d1d5db;

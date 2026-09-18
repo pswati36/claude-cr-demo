@@ -6,9 +6,9 @@ app.use(cors());
 app.use(express.json());
 
 const users = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', phone: '+1 (555) 101-0001', address: '123 Maple St, Springfield, IL', designation: 'Engineering Manager' },
-  { id: 2, name: 'Bob Smith', email: 'bob@example.com', phone: '+1 (555) 101-0002', address: '456 Oak Ave, Shelbyville, IL', designation: 'Software Engineer' },
-  { id: 3, name: 'Carol White', email: 'carol@example.com', phone: '+1 (555) 101-0003', address: '789 Pine Rd, Capital City, IL', designation: 'Product Designer' },
+  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', phone: '+1 (555) 101-0001', address: '123 Maple St, Springfield, IL', designation: 'Engineering Manager', organization: 'Acme Corp' },
+  { id: 2, name: 'Bob Smith', email: 'bob@example.com', phone: '+1 (555) 101-0002', address: '456 Oak Ave, Shelbyville, IL', designation: 'Software Engineer', organization: 'Globex Inc' },
+  { id: 3, name: 'Carol White', email: 'carol@example.com', phone: '+1 (555) 101-0003', address: '789 Pine Rd, Capital City, IL', designation: 'Product Designer', organization: 'Initech LLC' },
 ];
 
 const orders = [
