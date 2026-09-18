@@ -47,6 +47,38 @@ export default function OrderDashboard() {
           })}
         </tbody>
       </table>
+      {orders.length > 0 && (
+        <div className="order-summary">
+          <div className="summary-stat">
+            <span className="summary-label">Total Orders</span>
+            <span className="summary-value">{orders.length}</span>
+          </div>
+          <div className="summary-stat">
+            <span className="summary-label">Total Value</span>
+            <span className="summary-value">
+              ${orders.reduce((sum, o) => sum + o.total, 0).toFixed(2)}
+            </span>
+          </div>
+          {Object.entries(
+            orders.reduce((counts, o) => {
+              counts[o.status] = (counts[o.status] || 0) + 1;
+              return counts;
+            }, {})
+          ).map(([status, count]) => {
+            const color = statusColors[status] || { bg: '#f3f4f6', text: '#374151' };
+            return (
+              <div className="summary-stat" key={status}>
+                <span className="summary-label">
+                  <span className="status-badge" style={{ background: color.bg, color: color.text }}>
+                    {status}
+                  </span>
+                </span>
+                <span className="summary-value">{count}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
       <style>{`
         .order-table-wrapper {
           overflow-x: auto;
@@ -91,6 +123,32 @@ export default function OrderDashboard() {
         .order-date {
           color: #6b7280;
           font-size: 0.88rem;
+        }
+        .order-summary {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+          margin-top: 1.25rem;
+          padding-top: 1rem;
+          border-top: 2px solid #e5e7eb;
+        }
+        .summary-stat {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .summary-label {
+          font-size: 0.78rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: #6b7280;
+        }
+        .summary-value {
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #111827;
+          font-variant-numeric: tabular-nums;
         }
       `}</style>
     </div>
